@@ -1,6 +1,5 @@
 import requests
 
-
 def get_weather_details(location):
     # weatherapi.com api key
     api_key = "9a7439057ab84997b7670927233011"

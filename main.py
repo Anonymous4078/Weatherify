@@ -95,7 +95,6 @@ def main(page: Page):
             Image(
                 src=f"weather_icons/{weather_data['IconLocation']}",
                 width=125,
-                alignment=alignment.top_left,
             ),
             Container(height=10),
             Text(
@@ -158,7 +157,7 @@ def main(page: Page):
                 alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
         ],
-        horizontal_alignment=alignment.center,
+        horizontal_alignment='center'
     )
 
     homepage_body = Container(
@@ -166,7 +165,7 @@ def main(page: Page):
         gradient=LinearGradient(
             begin=alignment.top_center,
             end=alignment.bottom_center,
-            colors=["lightblue600", "lightblue900"],
+            colors=["lightblue500", "lightblue900"],
         ),
         width=500,
         height=800,
@@ -174,7 +173,6 @@ def main(page: Page):
         padding=20,
     )
 
-    # splash screen contents
     splash_screen_data = Column(
         [
             Image(src="logo/logo.svg", width=200),
@@ -182,8 +180,8 @@ def main(page: Page):
             Text(
                 value="Weather Forecasts",
                 font_family="Comfortaa-Bold",
-                style="displayLarge",
-                text_align=alignment.center,
+                style=TextThemeStyle.DISPLAY_LARGE,
+                text_align=TextAlign.CENTER,
             ),
             Container(height=30),
             ElevatedButton(
@@ -199,8 +197,8 @@ def main(page: Page):
             ),
             Container(height=30),
         ],
-        horizontal_alignment="center",
-        alignment="center",
+        alignment='center',
+        horizontal_alignment='center'
     )
 
     splash_screen = Container(
@@ -208,7 +206,7 @@ def main(page: Page):
         gradient=LinearGradient(
             begin=alignment.top_center,
             end=alignment.bottom_center,
-            colors=[colors.LIGHT_BLUE_600, colors.LIGHT_BLUE_ACCENT_700],
+            colors=[colors.LIGHT_BLUE_500, colors.LIGHT_BLUE_900],
         ),
         width=500,
         height=800,
@@ -245,7 +243,7 @@ def main(page: Page):
                 alignment="center",
             ),
             Container(height=15),
-            ft.Divider(color=colors.WHITE),
+            Divider(color=colors.WHITE),
             Container(height=5),
             Row(
                 [
@@ -325,7 +323,7 @@ def main(page: Page):
                         value="Gust",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
                     Text(
                         value=weather_data["Gust"],
