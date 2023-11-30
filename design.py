@@ -160,8 +160,6 @@ def main(page: ft.Page):
 
     # splash screen contents
     splash_screen_data = ft.Column(
-        [
-            ft.Container(
                 [
                     ft.Image(src="logo/logo.svg", width=200),
                     ft.Container(height=30),
@@ -184,9 +182,7 @@ def main(page: ft.Page):
                         on_click=lambda _: page.go("/homepage"),
                     ),
                     ft.Container(height=30),
-                ]
-            )
-        ],
+                ],
         horizontal_alignment="center",
         alignment="center",
     )
