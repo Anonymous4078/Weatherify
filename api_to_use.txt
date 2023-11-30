@@ -1,3 +1,0 @@
-APIs to use:
-
-1) weatherapi.com
