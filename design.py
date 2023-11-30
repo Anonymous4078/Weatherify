@@ -2,18 +2,13 @@ import flet as ft
 import datetime
 from weather import get_weather_details, get_forecast_details
 
-# Get the current date
 current_date = datetime.datetime.now()
-
-# Format the date as "Wednesday, July 22"
 formatted_date = current_date.strftime("%A, %B %d")
 
-# setting the city
 weather_data = get_weather_details("mumbai")
 forecast_data = get_forecast_details("mumbai")
 
 
-# main flet application
 def main(page: ft.Page):
     page.title = "Weather App"
     page.padding = 0
@@ -21,7 +16,7 @@ def main(page: ft.Page):
     page.horizontal_alignment = "center"
     page.window_width = 500
     page.window_height = 800
-    page.colors = ["lightblue600", "lightblue900"]
+    page.colors = ["lightblue300", "lightblue900"]
     page.fonts = {
         "Comfortaa-Bold": "fonts/Comfortaa-Bold.ttf",
         "Comfortaa-Light": "fonts/Comfortaa-Light.ttf",
@@ -52,7 +47,6 @@ def main(page: ft.Page):
                 [hourly_icon, hourly_time, hourly_temp], horizontal_alignment="center"
             )
 
-            # setting the values of hourly container
             hourly_icon.src = f"weather_icons/{logo}"
             hourly_temp.value = temp
             hourly_time.value = time
@@ -105,16 +99,42 @@ def main(page: ft.Page):
             ft.Row(spacing=10, controls=hourly_items_report(), scroll="auto"),
             ft.Row(
                 [
-                    ft.IconButton(
-                        icon=ft.icons.ARROW_BACK_IOS,
-                        icon_color=ft.colors.WHITE,
-                        icon_size=30,
+                    ft.ElevatedButton(
+                        width=125,
+                        height=60,
+                        content=ft.Row(
+                            [
+                                ft.Icon(
+                                    name=ft.icons.ARROW_BACK_ROUNDED,
+                                    color=ft.colors.BLUE_900,
+                                ),
+                                ft.Text(
+                                    value="Back",
+                                    size=17.5,
+                                    color=ft.colors.BLUE_900,
+                                    text_align=ft.TextAlign.CENTER,
+                                ),
+                            ],
+                        ),
                         on_click=lambda _: page.go("/"),
                     ),
-                    ft.IconButton(
-                        icon=ft.icons.ARROW_FORWARD_IOS,
-                        icon_color=ft.colors.WHITE,
-                        icon_size=30,
+                    ft.ElevatedButton(
+                        width=125,
+                        height=60,
+                        content=ft.Row(
+                            [
+                                ft.Text(
+                                    value="Details",
+                                    size=17.5,
+                                    color=ft.colors.BLUE_900,
+                                    text_align=ft.TextAlign.CENTER,
+                                ),
+                                ft.Icon(
+                                    name=ft.icons.ARROW_FORWARD_ROUNDED,
+                                    color=ft.colors.BLUE_900,
+                                ),
+                            ],
+                        ),
                         on_click=lambda _: page.go("/homepage/weatherdetails"),
                     ),
                 ],
@@ -139,29 +159,40 @@ def main(page: ft.Page):
     )
 
     # splash screen contents
-    splash_screen_data = ft.Column([        
-                ft.Image(src="logo/logo.svg", width=200),
-                ft.Container(height=30),
-                ft.Text(value='Weather Forecasts',font_family='Comfortaa-Bold',style='displayLarge',text_align='center'),
-                ft.Container(height=30),
-                ft.ElevatedButton(
-                    width=205,
-                    height=75,
-                    content=ft.Row(
-                  [
-                    ft.Text(value='Get Started',size=25),
-                    ft.Icon(name=ft.icons.ARROW_FORWARD_IOS)]
-                  ),  on_click=lambda _: page.go("/homepage"),
+    splash_screen_data = ft.Column(
+        [
+            ft.Image(src="logo/logo.svg", width=200),
+            ft.Container(height=30),
+            ft.Text(
+                value="Weather Forecasts",
+                font_family="Comfortaa-Bold",
+                style="displayLarge",
+                text_align="center",
+            ),
+            ft.Container(height=30),
+            ft.ElevatedButton(
+                width=205,
+                height=75,
+                content=ft.Row(
+                    [
+                        ft.Text(value="Get Started", size=25),
+                        ft.Icon(name=ft.icons.ARROW_FORWARD_IOS),
+                    ]
                 ),
-                ft.Container(height=30), 
-    ],horizontal_alignment='center',alignment='center')
-        
+                on_click=lambda _: page.go("/homepage"),
+            ),
+            ft.Container(height=30),
+        ],
+        horizontal_alignment="center",
+        alignment="center",
+    )
+
     splash_screen = ft.Container(
         content=splash_screen_data,
         gradient=ft.LinearGradient(
             begin=ft.alignment.top_center,
             end=ft.alignment.bottom_center,
-            colors=["lightblue400", "lightblue900"],
+            colors=["lightblue300", "lightblue900"],
         ),
         width=500,
         height=800,
@@ -173,17 +204,30 @@ def main(page: ft.Page):
     weather_indepth_data = ft.Column(
         [
             ft.Container(height=5),
-            ft.Text(
-                value=formatted_date,
-                font_family="Comfortaa-Light",
-                color=ft.colors.WHITE,
-                style="titleLarge",
+            ft.Row(
+                [
+                    ft.Icon(name=ft.icons.DATE_RANGE_SHARP, color=ft.colors.WHITE),
+                    ft.Text(
+                        value=formatted_date,
+                        size=25,
+                        font_family="Comfortaa-Bold",
+                        style="titleLarge",
+                        color=ft.colors.WHITE,
+                    ),
+                ],
+                alignment="center",
             ),
-            ft.Text(
-                value=weather_data["Location"],
-                font_family="Comfortaa-Bold",
-                style="titleLarge",
-                color=ft.colors.WHITE,
+            ft.Row(
+                [
+                    ft.Icon(name=ft.icons.LOCATION_PIN, color=ft.colors.WHITE),
+                    ft.Text(
+                        value=weather_data["Location"],
+                        font_family="Comfortaa-Bold",
+                        style="titleLarge",
+                        color=ft.colors.WHITE,
+                    ),
+                ],
+                alignment="center",
             ),
             ft.Container(height=15),
             ft.Divider(color=ft.colors.WHITE),
@@ -299,10 +343,15 @@ def main(page: ft.Page):
             ft.Divider(color=ft.colors.WHITE),
             ft.Container(height=15),
             ft.Row(spacing=10, controls=hourly_items_report(), scroll="auto"),
-            ft.IconButton(
-                icon=ft.icons.ARROW_BACK_IOS,
-                icon_color=ft.colors.WHITE,
-                icon_size=30,
+            ft.ElevatedButton(
+                width=150,
+                height=75,
+                content=ft.Row(
+                    [
+                        ft.Text(value="Back", size=25),
+                        ft.Icon(name=ft.icons.ARROW_BACK_IOS_NEW_SHARP),
+                    ]
+                ),
                 on_click=lambda _: page.go("/homepage"),
             ),
         ],
@@ -316,7 +365,7 @@ def main(page: ft.Page):
         gradient=ft.LinearGradient(
             begin=ft.alignment.top_center,
             end=ft.alignment.bottom_center,
-            colors=["#001a31", "#019877"],
+            colors=["lightblue300", "lightblue900"],
         ),
         width=500,
         height=800,
