@@ -8,11 +8,12 @@ formatted_date = current_date.strftime("%A, %B %d")
 weather_data = get_weather_details("mumbai")
 forecast_data = get_forecast_details("mumbai")
 
+
 def main(page: Page):
     page.title = "Weather Forecasts"
     page.padding = 0
-    page.vertical_alignment = "center"
-    page.horizontal_alignment = "center"
+    page.vertical_alignment = alignment.center
+    page.horizontal_alignment = alignment.center
     page.window_width = 500
     page.window_height = 800
     page.colors = ["lightblue300", "lightblue900"]
@@ -43,7 +44,8 @@ def main(page: Page):
                 color=colors.WHITE,
             )
             hourly_container = Column(
-                [hourly_icon, hourly_time, hourly_temp], horizontal_alignment=alignment.center
+                [hourly_icon, hourly_time, hourly_temp],
+                horizontal_alignment=alignment.center,
             )
 
             hourly_icon.src = f"weather_icons/{logo}"
@@ -71,7 +73,7 @@ def main(page: Page):
                         value=weather_data["Location"],
                         font_family="Comfortaa-Bold",
                         style="titleLarge",
-                        color=colors.WHITE
+                        color=colors.WHITE,
                     ),
                 ],
                 alignment="center",
@@ -90,7 +92,11 @@ def main(page: Page):
                 alignment="center",
             ),
             Container(height=25),
-            Image(src=f"weather_icons/{weather_data['IconLocation']}", width=125,alignment=alignment.top_left),
+            Image(
+                src=f"weather_icons/{weather_data['IconLocation']}",
+                width=125,
+                alignment=alignment.top_left,
+            ),
             Container(height=10),
             Text(
                 value=f"{weather_data['Climate']}",
@@ -104,17 +110,16 @@ def main(page: Page):
                 style="displayLarge",
                 color=colors.WHITE,
                 size=80,
-                
             ),
             Container(height=25),
-            Divider(color=ft.colors.WHITE),
-            Row(spacing=10, controls=hourly_items_report(), scroll="auto"),
+            Divider(color=colors.WHITE),
+            Row(spacing=10, controls=hourly_items_report(), scroll=ScrollMode.AUTO),
             Row(
                 [
-                    ft.ElevatedButton(
+                    ElevatedButton(
                         width=115,
                         height=60,
-                        content=ft.Row(
+                        content=Row(
                             [
                                 Icon(
                                     name=icons.ARROW_BACK_ROUNDED,
@@ -153,7 +158,7 @@ def main(page: Page):
                 alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
         ],
-        horizontal_alignment="center",
+        horizontal_alignment=alignment.center,
     )
 
     homepage_body = Container(
@@ -170,30 +175,30 @@ def main(page: Page):
     )
 
     # splash screen contents
-    splash_screen_data = ft.Column(
-                [
-                    Image(src="logo/logo.svg", width=200),
-                    Container(height=30),
-                    Text(
-                        value="Weather Forecasts",
-                        font_family="Comfortaa-Bold",
-                        style="displayLarge",
-                        text_align="center",
-                    ),
-                    Container(height=30),
-                    ElevatedButton(
-                        width=205,
-                        height=75,
-                        content=Row(
-                            [
-                                Text(value="Get Started", size=25),
-                                Icon(name=ft.icons.ARROW_FORWARD_IOS),
-                            ]
-                        ),
-                        on_click=lambda _: page.go("/home"),
-                    ),
-                    Container(height=30),
-                ],
+    splash_screen_data = Column(
+        [
+            Image(src="logo/logo.svg", width=200),
+            Container(height=30),
+            Text(
+                value="Weather Forecasts",
+                font_family="Comfortaa-Bold",
+                style="displayLarge",
+                text_align=alignment.center,
+            ),
+            Container(height=30),
+            ElevatedButton(
+                width=205,
+                height=75,
+                content=Row(
+                    [
+                        Text(value="Get Started", size=25),
+                        Icon(name=icons.ARROW_FORWARD_IOS_ROUNDED),
+                    ]
+                ),
+                on_click=lambda _: page.go("/home"),
+            ),
+            Container(height=30),
+        ],
         horizontal_alignment="center",
         alignment="center",
     )
@@ -226,7 +231,7 @@ def main(page: Page):
                 ],
                 alignment="center",
             ),
-            ft.Row(
+            Row(
                 [
                     Icon(name=icons.DATE_RANGE_SHARP, color=colors.WHITE),
                     Text(
@@ -239,109 +244,108 @@ def main(page: Page):
                 ],
                 alignment="center",
             ),
-            
             Container(height=15),
-            ft.Divider(color=ft.colors.WHITE),
-            ft.Container(height=5),
-            ft.Row(
+            ft.Divider(color=colors.WHITE),
+            Container(height=5),
+            Row(
                 [
-                    ft.Text(
+                    Text(
                         value="Humidity",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
-                    ft.Text(
+                    Text(
                         value=weather_data["Humidity"],
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
-            ft.Container(height=5),
-            ft.Row(
+            Container(height=5),
+            Row(
                 [
-                    ft.Text(
+                    Text(
                         value="Wind Speed",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
-                    ft.Text(
+                    Text(
                         value=weather_data["WindSpeed"],
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
-            ft.Container(height=5),
-            ft.Row(
+            Container(height=5),
+            Row(
                 [
-                    ft.Text(
+                    Text(
                         value="Pressure",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
-                    ft.Text(
+                    Text(
                         value=weather_data["Pressure"],
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
-            ft.Container(height=5),
-            ft.Row(
+            Container(height=5),
+            Row(
                 [
-                    ft.Text(
+                    Text(
                         value="Precipitation",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
-                    ft.Text(
+                    Text(
                         value=weather_data["Precipitation"],
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
-            ft.Container(height=5),
-            ft.Row(
+            Container(height=5),
+            Row(
                 [
-                    ft.Text(
+                    Text(
                         value="Gust",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
                         color=ft.colors.WHITE,
                     ),
-                    ft.Text(
+                    Text(
                         value=weather_data["Gust"],
                         font_family="Comfortaa-Light",
                         style="titleLarge",
-                        color=ft.colors.WHITE,
+                        color=colors.WHITE,
                     ),
                 ],
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                alignment=MainAxisAlignment.SPACE_BETWEEN,
             ),
-            ft.Container(height=5),
-            ft.Row(
+            Container(height=5),
+            Row(
                 [
-                    ft.Text(
+                    Text(
                         value="UV Index",
                         font_family="Comfortaa-Light",
                         style="titleLarge",
                         color=colors.WHITE,
                     ),
-                    ft.Text(
+                    Text(
                         value=weather_data["UVIndex"],
                         font_family="Comfortaa-Light",
                         style="titleLarge",
@@ -359,7 +363,7 @@ def main(page: Page):
                 height=75,
                 content=Row(
                     [
-                        Icon(name=icons.ARROW_BACK_ROUNDED),  
+                        Icon(name=icons.ARROW_BACK_ROUNDED),
                         Text(value="Back", size=25),
                     ]
                 ),
@@ -386,7 +390,7 @@ def main(page: Page):
     def route_change(route):
         page.views.clear()
         page.views.append(
-            ft.View(
+            View(
                 "/",
                 [splash_screen],
                 scroll=ScrollMode.AUTO,
@@ -398,7 +402,7 @@ def main(page: Page):
 
         if page.route == "/home" or page.route == "/home/details":
             page.views.append(
-                ft.View(
+                View(
                     "/home",
                     [
                         homepage_body,
@@ -412,7 +416,7 @@ def main(page: Page):
 
         if page.route == "/home/details":
             page.views.append(
-                ft.View(
+                View(
                     "/details",
                     [
                         weather_indepth_body,
@@ -435,4 +439,5 @@ def main(page: Page):
     page.on_view_pop = view_pop
     page.go(page.route)
 
-ft.app(target=main, assets_dir="assets")
+
+app(target=main, assets_dir="assets")
