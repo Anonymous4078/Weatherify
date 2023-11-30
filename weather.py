@@ -2,7 +2,7 @@ import requests
 
 def get_weather_details(location):
     # weatherapi.com api key
-    api_key = open('key.txt').read()
+    api_key = '9a7439057ab84997b7670927233011'
 
     # setting the base URL for the weatherapi.com API
     base_url = f'http://api.weatherapi.com/v1/'
@@ -53,7 +53,7 @@ def get_weather_details(location):
 def get_forecast_details(location):
 
     # weatherapi.com api key
-    api_key = open('key.txt').read()
+    api_key = '9a7439057ab84997b7670927233011'
 
     # setting the base URL for the weatherapi.com API
     base_url = f'http://api.weatherapi.com/v1/'
