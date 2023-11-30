@@ -161,33 +161,38 @@ def main(page: ft.Page):
     # splash screen contents
     splash_screen_data = ft.Column(
         [
-            ft.Image(src="logo/logo.svg", width=200),
-            ft.Container(height=30),
-            ft.Text(
-                value="Weather Forecasts",
-                font_family="Comfortaa-Bold",
-                style="displayLarge",
-                text_align="center",
-            ),
-            ft.Container(height=30),
-            ft.ElevatedButton(
-                width=205,
-                height=75,
-                content=ft.Row(
-                    [
-                        ft.Text(value="Get Started", size=25),
-                        ft.Icon(name=ft.icons.ARROW_FORWARD_IOS),
-                    ]
-                ),
-                on_click=lambda _: page.go("/homepage"),
-            ),
-            ft.Container(height=30),
+            ft.Container(
+                [
+                    ft.Image(src="logo/logo.svg", width=200),
+                    ft.Container(height=30),
+                    ft.Text(
+                        value="Weather Forecasts",
+                        font_family="Comfortaa-Bold",
+                        style="displayLarge",
+                        text_align="center",
+                    ),
+                    ft.Container(height=30),
+                    ft.ElevatedButton(
+                        width=205,
+                        height=75,
+                        content=ft.Row(
+                            [
+                                ft.Text(value="Get Started", size=25),
+                                ft.Icon(name=ft.icons.ARROW_FORWARD_IOS),
+                            ]
+                        ),
+                        on_click=lambda _: page.go("/homepage"),
+                    ),
+                    ft.Container(height=30),
+                ]
+            )
         ],
         horizontal_alignment="center",
         alignment="center",
     )
 
     splash_screen = ft.Container(
+        # ft.Container(width=300,height=400,border_radius=12,bgcolor=ft.colors.GREEN_50,blur=ft.Blur(10,10,ft.BlurTileMode.REPEATED)),
         content=splash_screen_data,
         gradient=ft.LinearGradient(
             begin=ft.alignment.top_center,
