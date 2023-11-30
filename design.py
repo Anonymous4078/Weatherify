@@ -66,17 +66,30 @@ def main(page: ft.Page):
     homepage_data = ft.Column(
         [
             ft.Container(height=5),
-            ft.Text(
-                value=formatted_date,
-                font_family="Comfortaa-Light",
-                color=ft.colors.WHITE,
-                style="titleLarge",
+            ft.Row(
+                [
+                    ft.Icon(name=ft.icons.LOCATION_PIN, color=ft.colors.WHITE),
+                    ft.Text(
+                        value=weather_data["Location"],
+                        font_family="Comfortaa-Bold",
+                        style="titleLarge",
+                        color=ft.colors.WHITE,
+                    ),
+                ],
+                alignment="center",
             ),
-            ft.Text(
-                value=weather_data["Location"],
-                font_family="Comfortaa-Bold",
-                style="titleLarge",
-                color=ft.colors.WHITE,
+            ft.Row(
+                [
+                    ft.Icon(name=ft.icons.DATE_RANGE_SHARP, color=ft.colors.WHITE),
+                    ft.Text(
+                        value=formatted_date,
+                        size=15,
+                        font_family="Comfortaa-Bold",
+                        style="titleLarge",
+                        color=ft.colors.WHITE,
+                    ),
+                ],
+                alignment="center",
             ),
             ft.Container(height=25),
             ft.Image(src=f"weather_icons/{weather_data['IconLocation']}", width=150),
@@ -160,29 +173,29 @@ def main(page: ft.Page):
 
     # splash screen contents
     splash_screen_data = ft.Column(
-                [
-                    ft.Image(src="logo/logo.svg", width=200),
-                    ft.Container(height=30),
-                    ft.Text(
-                        value="Weather Forecasts",
-                        font_family="Comfortaa-Bold",
-                        style="displayLarge",
-                        text_align="center",
-                    ),
-                    ft.Container(height=30),
-                    ft.ElevatedButton(
-                        width=205,
-                        height=75,
-                        content=ft.Row(
-                            [
-                                ft.Text(value="Get Started", size=25),
-                                ft.Icon(name=ft.icons.ARROW_FORWARD_IOS),
-                            ]
-                        ),
-                        on_click=lambda _: page.go("/homepage"),
-                    ),
-                    ft.Container(height=30),
-                ],
+        [
+            ft.Image(src="logo/logo.svg", width=200),
+            ft.Container(height=30),
+            ft.Text(
+                value="Weather Forecasts",
+                font_family="Comfortaa-Bold",
+                style="displayLarge",
+                text_align="center",
+            ),
+            ft.Container(height=30),
+            ft.ElevatedButton(
+                width=205,
+                height=75,
+                content=ft.Row(
+                    [
+                        ft.Text(value="Get Started", size=25),
+                        ft.Icon(name=ft.icons.ARROW_FORWARD_IOS),
+                    ]
+                ),
+                on_click=lambda _: page.go("/homepage"),
+            ),
+            ft.Container(height=30),
+        ],
         horizontal_alignment="center",
         alignment="center",
     )
@@ -207,10 +220,9 @@ def main(page: ft.Page):
             ft.Container(height=5),
             ft.Row(
                 [
-                    ft.Icon(name=ft.icons.DATE_RANGE_SHARP, color=ft.colors.WHITE),
+                    ft.Icon(name=ft.icons.LOCATION_PIN, color=ft.colors.WHITE),
                     ft.Text(
-                        value=formatted_date,
-                        size=25,
+                        value=weather_data["Location"],
                         font_family="Comfortaa-Bold",
                         style="titleLarge",
                         color=ft.colors.WHITE,
@@ -220,9 +232,10 @@ def main(page: ft.Page):
             ),
             ft.Row(
                 [
-                    ft.Icon(name=ft.icons.LOCATION_PIN, color=ft.colors.WHITE),
+                    ft.Icon(name=ft.icons.DATE_RANGE_SHARP, color=ft.colors.WHITE),
                     ft.Text(
-                        value=weather_data["Location"],
+                        value=formatted_date,
+                        size=15,
                         font_family="Comfortaa-Bold",
                         style="titleLarge",
                         color=ft.colors.WHITE,
